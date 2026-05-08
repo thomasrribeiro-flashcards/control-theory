@@ -58,6 +58,9 @@ A: Add POLES and ZEROS of the compensator $C(s)$ to SHAPE the overall $L(s) = C(
 
 ## 5.10 Sketching the Locus
 
+Q: You're given an open-loop $L(s)$ and asked for the root locus. What's your first move?
+A: Plot poles (×) and zeros (○) on the $s$-plane, then mark real-axis segments (odd-count rule). Asymptotes and breakaway come next.
+
 Q: OUTLINE the steps to sketch a root locus.
 A: (1) Plot open-loop poles (×) and zeros (○). (2) Identify real-axis segments (odd count rule). (3) Compute and draw asymptotes (number, angle, centroid). (4) Find breakaway/break-in points. (5) Compute angles of departure/arrival at complex poles/zeros. (6) Find imaginary-axis crossings (Routh or $s = j\omega$). (7) Sketch branches from poles to zeros, respecting rules and symmetry. Practice builds intuition rapidly.
 

@@ -38,6 +38,9 @@ A: (1) [Can INDUCE instability]: high-gain feedback can make a stable plant unst
 
 ## 1.5 Closed-Loop Transfer Function
 
+Q: Before deriving the closed-loop transfer function, predict: should it be $\frac{L}{1+L}$ or $\frac{1}{1+L}$ for tracking the reference?
+A: $\frac{L}{1+L}$ — output should equal reference when loop gain $|L| \gg 1$. The other expression is the sensitivity (disturbance → output).
+
 Q: Derive the CLOSED-LOOP TRANSFER FUNCTION for a unity-feedback loop with forward path $L(s) = G(s) C(s)$.
 A: At the summing junction: $E(s) = R(s) - Y(s)$. Forward path: $Y(s) = L(s) E(s)$. Substitute: $Y(s) = L(s)(R(s) - Y(s)) \Rightarrow Y(s)(1 + L(s)) = L(s) R(s)$. Hence $T(s) = \frac{Y(s)}{R(s)} = \frac{L(s)}{1 + L(s)}$. Denominator $1 + L(s) = 0$ is the CHARACTERISTIC EQUATION — its roots are the closed-loop poles, determining stability.
 
@@ -92,4 +95,7 @@ Pole: $s = -(1 + K)$. For $K > -1$: stable (pole in left half-plane). For $K = 0
 
 Open-loop steady-state gain was $G(0) = 1$. With $K = 10$: $T(0) = 10/11 \approx 0.91$, slightly less than 1 (offset). Steady-state error: $1 - T(0) = 1/(1 + K) \to 0$ as $K \to \infty$. Speed: time constant $\tau = 1/(1 + K) \to 0$ as $K \to \infty$ — instantaneous response in the limit.
 
-**EVALUATE**: Proportional feedback with a first-order plant (1) ALWAYS stable for $K > -1$, (2) speeds up response as $K$ grows, (3) REDUCES BUT DOESN'T ELIMINATE steady-state error. Key limitations: (a) error $1/(1+K)$ never reaches zero — need INTEGRAL action (PI controller). (b) High-gain idealization ignores noise amplification, actuator saturation, high-frequency plant dynamics. Realistic design balances gain against these constraints. This simple example captures the central trade-offs that motivate richer controllers.
+**EVALUATE**: Proportional + first-order plant: stable for $K > -1$; speeds up with $K$; reduces but doesn't ELIMINATE steady-state error (need INTEGRAL action). High-gain idealization ignores noise, saturation, fast unmodeled dynamics — realistic design balances against these.
+
+Q: You see a first-order plant with constant-gain $K$ feedback. What pole equation should you expect?
+A: Single closed-loop pole at $s = -(1 + K) \cdot a$ where $a$ is the open-loop pole magnitude — pole moves left as $K$ grows.
