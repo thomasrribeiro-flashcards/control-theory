@@ -13,7 +13,7 @@ A: Because (1) MICROCONTROLLERS and computers are cheap and ubiquitous. (2) DIGI
 
 ## 14.2 Sampling
 
-C: [Sampling] converts a continuous-time signal $x(t)$ to discrete samples $x[k] = x(kT_s)$, where $T_s$ is the SAMPLING PERIOD.
+C: [Sampling] converts a continuous-time signal $x(t)$ to discrete samples $x\lbrack k\rbrack  = x(kT_s)$, where $T_s$ is the SAMPLING PERIOD.
 
 Q: State the [NYQUIST-SHANNON SAMPLING THEOREM].
 A: A signal containing no frequencies above $f_N$ Hz is COMPLETELY determined by samples taken at rate $f_s \geq 2 f_N$ (the NYQUIST RATE). Below this rate: ALIASING — high frequencies "fold down" indistinguishably into lower frequencies. Practical rule: sample at 10-20× the bandwidth of interest; use anti-aliasing filters before the ADC. Control systems: typical $f_s$ = 10-20× closed-loop bandwidth.
@@ -23,7 +23,7 @@ A: High-frequency content appearing as low-frequency content after sampling. A s
 
 ## 14.3 The Z-Transform
 
-C: The [z-transform] of a discrete-time sequence $x[k]$ is $X(z) = \sum_{k=0}^\infty x[k] z^{-k}$. Discrete-time analog of Laplace transform.
+C: The [z-transform] of a discrete-time sequence $x\lbrack k\rbrack $ is $X(z) = \sum_{k=0}^\infty x\lbrack k\rbrack  z^{-k}$. Discrete-time analog of Laplace transform.
 
 Q: Why use the Z-TRANSFORM in digital control?
 A: Because it transforms DIFFERENCE EQUATIONS into ALGEBRAIC equations in $z$ — parallel to Laplace for ODEs. Shift operator: $x[k - 1] \to z^{-1} X(z)$. TRANSFER FUNCTION of a discrete system: $G(z) = Y(z)/U(z)$. All classical control tools (root locus, Bode, Nyquist) translate to the $z$-domain with modifications. $z = e^{sT_s}$ maps continuous $s$-plane to $z$-plane.

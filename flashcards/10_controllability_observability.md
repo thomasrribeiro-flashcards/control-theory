@@ -8,7 +8,7 @@ tags = ["math", "control-theory", "controllability", "observability", "duality",
 
 ## 10.1 Controllability
 
-C: A system $\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$ is [controllable] if for any initial state $\mathbf{x}_0$ and target state $\mathbf{x}_f$, there exists an input $\mathbf{u}(t)$ on some finite interval $[0, T]$ steering $\mathbf{x}(0) = \mathbf{x}_0$ to $\mathbf{x}(T) = \mathbf{x}_f$.
+C: A system $\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$ is [controllable] if for any initial state $\mathbf{x}_0$ and target state $\mathbf{x}_f$, there exists an input $\mathbf{u}(t)$ on some finite interval $\lbrack 0, T\rbrack $ steering $\mathbf{x}(0) = \mathbf{x}_0$ to $\mathbf{x}(T) = \mathbf{x}_f$.
 
 Q: Why is CONTROLLABILITY fundamental?
 A: Because it answers: "Can the input INFLUENCE every state variable?" If not controllable, some state components are INDEPENDENT of input — uncontrollable modes cannot be affected. Controllability is PREREQUISITE for: pole placement (chapter 11), optimal control (LQR), any design that requires steering the system. Uncontrollable stable modes are acceptable; uncontrollable UNSTABLE modes → system cannot be stabilized.
@@ -23,7 +23,7 @@ A: $\mathcal{C} = [B \ AB] = \begin{pmatrix} 0 & 1 \\ 1 & -3 \end{pmatrix}$. $\d
 
 ## 10.3 Observability
 
-C: A system $\dot{\mathbf{x}} = A\mathbf{x}$, $\mathbf{y} = C\mathbf{x}$ is [observable] if the INITIAL STATE $\mathbf{x}(0)$ can be DETERMINED from observations $\mathbf{y}(t)$ on some finite interval $[0, T]$.
+C: A system $\dot{\mathbf{x}} = A\mathbf{x}$, $\mathbf{y} = C\mathbf{x}$ is [observable] if the INITIAL STATE $\mathbf{x}(0)$ can be DETERMINED from observations $\mathbf{y}(t)$ on some finite interval $\lbrack 0, T\rbrack $.
 
 Q: Why does OBSERVABILITY matter?
 A: Because many control schemes (state-feedback) need to know the STATE — but often only OUTPUTS are directly measurable. Observability ensures we can RECONSTRUCT the state from outputs. OBSERVERS / KALMAN FILTERS (chapter 11) exploit observability to estimate the state. Unobservable modes: effects not visible at the output; present but hidden. Like controllability, observability is DESIGN PREREQUISITE.
