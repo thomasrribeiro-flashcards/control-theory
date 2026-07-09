@@ -1,6 +1,6 @@
 +++
 order = 2
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "laplace-transform", "transfer-function", "poles", "zeros", "impulse-response"]
 +++
 
@@ -15,16 +15,49 @@ A: Because it converts LINEAR ODEs with constant coefficients into ALGEBRAIC equ
 
 ## 2.2 Key Laplace Transform Pairs
 
-Q: State the LAPLACE TRANSFORM of COMMON signals.
-A: (1) $\delta(t) \to 1$ (impulse). (2) $1 \text{ (step)} \to 1/s$. (3) $t \to 1/s^2$ (ramp). (4) $e^{-at} \to 1/(s + a)$ (exponential decay). (5) $\sin(\omega t) \to \omega/(s^2 + \omega^2)$. (6) $\cos(\omega t) \to s/(s^2 + \omega^2)$. (7) $e^{-at} \sin(\omega t) \to \omega/((s+a)^2 + \omega^2)$. Each standard signal has a simple rational Laplace representation — the bedrock of frequency-domain methods.
+Q: What is the Laplace transform of the unit impulse $\delta(t)$?
+A: $1$.
+
+Q: What is the Laplace transform of the unit step?
+A: $1/s$.
+
+Q: What is the Laplace transform of the ramp $t$?
+A: $1/s^2$.
+
+Q: What is the Laplace transform of the exponential decay $e^{-at}$?
+A: $1/(s + a)$.
+
+Q: What is the Laplace transform of $\sin(\omega t)$?
+A: $\omega/(s^2 + \omega^2)$.
+
+Q: What is the Laplace transform of $\cos(\omega t)$?
+A: $s/(s^2 + \omega^2)$.
+
+Q: What is the Laplace transform of the damped sinusoid $e^{-at} \sin(\omega t)$?
+A: $\omega/((s+a)^2 + \omega^2)$.
 
 Q: Why does $\mathcal{L}\{e^{-at}\} = 1/(s+a)$?
 A: $\int_0^\infty e^{-at} e^{-st} dt = \int_0^\infty e^{-(s+a)t} dt = \left[-\frac{1}{s+a} e^{-(s+a)t}\right]_0^\infty = \frac{1}{s+a}$ (valid for $\text{Re}(s) > -a$). The REGION OF CONVERGENCE: $\text{Re}(s) > -a$. For stable (decaying) signals: ROC includes the right half-plane. For unstable signals: LT may not exist or has restricted ROC. Control theory focuses on stable signals.
 
 ## 2.3 Properties of the Laplace Transform
 
-Q: State the key PROPERTIES of the Laplace transform.
-A: (1) [Linearity]: $\mathcal{L}\{af + bg\} = aF + bG$. (2) [Derivative]: $\mathcal{L}\{\dot{f}\} = sF(s) - f(0)$. (3) [Integral]: $\mathcal{L}\{\int_0^t f d\tau\} = F(s)/s$. (4) [Time shift]: $\mathcal{L}\{f(t - \tau) u(t - \tau)\} = e^{-s\tau} F(s)$. (5) [Frequency shift]: $\mathcal{L}\{e^{-at} f(t)\} = F(s + a)$. (6) [Convolution]: $\mathcal{L}\{f * g\} = F \cdot G$. Each property enables mechanical conversion of time-domain operations to algebraic ones.
+Q: State the LINEARITY property of the Laplace transform.
+A: $\mathcal{L}\{af + bg\} = aF + bG$.
+
+Q: State the DERIVATIVE property of the Laplace transform.
+A: $\mathcal{L}\{\dot{f}\} = sF(s) - f(0)$ — differentiation becomes multiplication by $s$, minus the initial condition.
+
+Q: State the INTEGRAL property of the Laplace transform.
+A: $\mathcal{L}\{\int_0^t f \, d\tau\} = F(s)/s$.
+
+Q: State the TIME-SHIFT property of the Laplace transform.
+A: $\mathcal{L}\{f(t - \tau) u(t - \tau)\} = e^{-s\tau} F(s)$.
+
+Q: State the FREQUENCY-SHIFT property of the Laplace transform.
+A: $\mathcal{L}\{e^{-at} f(t)\} = F(s + a)$.
+
+Q: State the CONVOLUTION property of the Laplace transform.
+A: $\mathcal{L}\{f * g\} = F \cdot G$ — convolution in time becomes multiplication in $s$.
 
 ## 2.4 The Transfer Function
 

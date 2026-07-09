@@ -1,6 +1,6 @@
 +++
 order = 14
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "digital-control", "z-transform", "sampling", "robotics", "aerospace", "applications"]
 +++
 
@@ -8,12 +8,24 @@ tags = ["math", "control-theory", "digital-control", "z-transform", "sampling", 
 
 ## 14.1 Why Digital Control
 
-Q: Why is MOST MODERN CONTROL implemented DIGITALLY?
-A: Because (1) MICROCONTROLLERS and computers are cheap and ubiquitous. (2) DIGITAL implementations are FLEXIBLE (change algorithm via software). (3) PRECISION: floating-point arithmetic beats analog component tolerances. (4) COMPLEX ALGORITHMS (MPC, Kalman filters, adaptive control) are naturally digital. (5) DIAGNOSTICS and logging are straightforward. Even analog-era techniques (PID) are implemented digitally today. Exceptions: very-high-frequency (RF), safety-critical analog backups.
+Q: Why are DIGITAL controller implementations FLEXIBLE?
+A: The algorithm changes via SOFTWARE — no hardware rework. Even analog-era techniques (PID) are implemented digitally today.
+
+Q: Why does DIGITAL control beat analog on PRECISION?
+A: Floating-point arithmetic beats analog component tolerances.
+
+Q: Which COMPLEX control algorithms are naturally digital?
+A: MPC, Kalman filters, adaptive control.
+
+Q: Besides flexibility, precision, and algorithm complexity, what PRACTICAL factors drive digital control?
+A: Cheap, ubiquitous microcontrollers; straightforward diagnostics and logging.
+
+Q: Where is control still implemented in ANALOG despite the digital norm?
+A: Very-high-frequency (RF) applications and safety-critical analog backups.
 
 ## 14.2 Sampling
 
-C: [Sampling] converts a continuous-time signal $x(t)$ to discrete samples $x\lbrack k\rbrack  = x(kT_s)$, where $T_s$ is the SAMPLING PERIOD.
+C: Sampling converts a continuous-time signal $x(t)$ to discrete samples [$x\lbrack k\rbrack  = x(kT_s)$], where $T_s$ is the sampling period.
 
 Q: State the [NYQUIST-SHANNON SAMPLING THEOREM].
 A: A signal containing no frequencies above $f_N$ Hz is COMPLETELY determined by samples taken at rate $f_s \geq 2 f_N$ (the NYQUIST RATE). Below this rate: ALIASING — high frequencies "fold down" indistinguishably into lower frequencies. Practical rule: sample at 10-20× the bandwidth of interest; use anti-aliasing filters before the ADC. Control systems: typical $f_s$ = 10-20× closed-loop bandwidth.
@@ -23,7 +35,7 @@ A: High-frequency content appearing as low-frequency content after sampling. A s
 
 ## 14.3 The Z-Transform
 
-C: The [z-transform] of a discrete-time sequence $x\lbrack k\rbrack $ is $X(z) = \sum_{k=0}^\infty x\lbrack k\rbrack  z^{-k}$. Discrete-time analog of Laplace transform.
+C: The z-transform of a discrete-time sequence $x\lbrack k\rbrack $ is [$X(z) = \sum_{k=0}^\infty x\lbrack k\rbrack  z^{-k}$]. Discrete-time analog of Laplace transform.
 
 Q: Why use the Z-TRANSFORM in digital control?
 A: Because it transforms DIFFERENCE EQUATIONS into ALGEBRAIC equations in $z$ — parallel to Laplace for ODEs. Shift operator: $x[k - 1] \to z^{-1} X(z)$. TRANSFER FUNCTION of a discrete system: $G(z) = Y(z)/U(z)$. All classical control tools (root locus, Bode, Nyquist) translate to the $z$-domain with modifications. $z = e^{sT_s}$ maps continuous $s$-plane to $z$-plane.
@@ -35,49 +47,119 @@ A: A discrete LTI system is BIBO STABLE iff ALL POLES $p_i$ lie INSIDE THE UNIT 
 
 ## 14.5 Discretization Methods
 
-Q: Describe COMMON DISCRETIZATION methods.
-A: (1) [FORWARD EULER]: $s \to (z - 1)/T_s$. Simple but can destabilize. (2) [BACKWARD EULER]: $s \to (z - 1)/(T_s z)$. Always stable. (3) [TUSTIN / BILINEAR]: $s \to \frac{2}{T_s} \frac{z - 1}{z + 1}$. Maps LHP to unit disk (preserves stability), matches magnitudes well; warps frequencies (pre-warping fixes). (4) [ZERO-ORDER HOLD (ZOH)]: $G(z) = (1 - z^{-1}) \mathcal{Z}\{G(s)/s\}$. Exact for sampled systems with ZOH at input. Different methods preserve different properties.
+Q: Give the FORWARD EULER discretization substitution and its main weakness.
+A: $s \to (z - 1)/T_s$. Simple but can DESTABILIZE a stable analog design.
+
+Q: Give the BACKWARD EULER discretization substitution and its main strength.
+A: $s \to (z - 1)/(T_s z)$. Always preserves stability.
+
+Q: Give the TUSTIN (BILINEAR) discretization substitution and its key properties.
+A: $s \to \frac{2}{T_s} \frac{z - 1}{z + 1}$. Maps LHP to unit disk (preserves stability), matches magnitudes well; warps frequencies (pre-warping fixes).
+
+Q: Give the ZERO-ORDER HOLD (ZOH) discretization formula, and when it is exact.
+A: $G(z) = (1 - z^{-1}) \mathcal{Z}\{G(s)/s\}$. Exact for sampled systems with a ZOH at the input.
 
 Q: Compare FORWARD EULER and TUSTIN discretization.
 A: Forward Euler: fast, simple, but can destabilize stable analog systems if $T_s$ is too large (maps only part of LHP to disk). Tustin: preserves stability (LHP ↔ disk), preserves DC gain, matches frequency response best. Both: polynomials $\to$ polynomials. Tustin is the DEFAULT for discretizing analog controllers for digital implementation. Pre-warping Tustin matches a specific frequency exactly — critical for notch filters.
 
 ## 14.6 Discrete PID
 
-Q: Write the DISCRETE PID algorithm.
-A: Using backward differences:
-- $u[k] = K_p e[k] + K_i \cdot T_s \sum_{i=0}^k e[i] + K_d (e[k] - e[k-1])/T_s$
-Or incremental form (avoid windup):
-- $\Delta u[k] = K_p(e[k] - e[k-1]) + K_i T_s e[k] + K_d (e[k] - 2e[k-1] + e[k-2])/T_s$
-- $u[k] = u[k-1] + \Delta u[k]$
-Incremental form is numerically stable and avoids integral windup naturally. Standard implementation in industrial controllers.
+Q: Write the POSITIONAL form of the DISCRETE PID algorithm (backward differences).
+A: $u[k] = K_p e[k] + K_i \cdot T_s \sum_{i=0}^k e[i] + K_d (e[k] - e[k-1])/T_s$
+
+Q: Write the INCREMENTAL form of the DISCRETE PID algorithm.
+A: $\Delta u[k] = K_p(e[k] - e[k-1]) + K_i T_s e[k] + K_d (e[k] - 2e[k-1] + e[k-2])/T_s$, then $u[k] = u[k-1] + \Delta u[k]$.
+
+Q: Why do industrial controllers prefer the INCREMENTAL form of discrete PID?
+A: It is numerically stable and avoids integral windup naturally — clamping $u[k]$ to the actuator range bounds the implicit integral.
 
 ## 14.7 Applications: Aerospace
 
-Q: How is CONTROL THEORY used in AEROSPACE?
-A: (1) [Autopilots]: PID + gain scheduling (altitude, pitch, roll loops). (2) [Guidance, Navigation, Control (GNC)]: Kalman filters (sensor fusion from GPS, IMU, star trackers), LQR for trajectory tracking. (3) [Attitude control]: quaternion-based controllers for satellites/rockets. (4) [Flight envelope protection]: ensure aircraft stays within safe flight conditions — constrained control. (5) [Reentry, landing]: model predictive control handling nonlinear dynamics + constraints. Aerospace is a CLASSIC control driver — many techniques invented for flight.
+Q: Which control techniques run aircraft AUTOPILOTS?
+A: PID + gain scheduling across the altitude, pitch, and roll loops.
+
+Q: Which two techniques are the core of aerospace GNC (Guidance, Navigation, Control)?
+A: Kalman filters for sensor fusion (GPS, IMU, star trackers) + LQR for trajectory tracking.
+
+Q: What controller parametrization handles satellite/rocket ATTITUDE CONTROL?
+A: Quaternion-based attitude controllers.
+
+Q: What is FLIGHT ENVELOPE PROTECTION, in control terms?
+A: Constrained control that keeps the aircraft within safe flight conditions.
+
+Q: Which control method handles REENTRY and LANDING, with nonlinear dynamics plus constraints?
+A: Model predictive control.
 
 Q: What's the INVERTED PENDULUM problem's relationship to aerospace?
 A: The inverted pendulum is a PROTOTYPICAL UNSTABLE PLANT — model for rocket launch stability. The Saturn V rocket was essentially an inverted pendulum stabilized by gimballed thrusters. SpaceX's landing relies on PRECISE CONTROL of an inherently unstable body (narrow, top-heavy). Same dynamics: $\ddot\theta = (g/l)\sin\theta - \tau/(ml^2)$. Control challenges (needed high-bandwidth, robust, saturation-aware feedback) drove aerospace control innovations.
 
 ## 14.8 Applications: Robotics
 
-Q: How is CONTROL THEORY used in ROBOTICS?
-A: (1) [Joint control]: PID or computed torque for each joint — fast position/velocity tracking. (2) [Trajectory tracking]: feedforward + PD + adaptive compensation for dynamics. (3) [Force control]: impedance/admittance control for physical interaction (grasping, assembly). (4) [Motion planning + control]: split problems into planner (reference) + tracker (controller). (5) [Localization/mapping]: Kalman/particle filters for SLAM. Modern extensions: RL for manipulation, visual servoing, humanoid walking via zero moment point control.
+Q: Which control methods handle robot JOINT CONTROL?
+A: PID or computed torque for each joint — fast position/velocity tracking.
+
+Q: What control structure achieves robot TRAJECTORY TRACKING?
+A: Feedforward + PD + adaptive compensation for dynamics.
+
+Q: Which control approaches enable robot FORCE CONTROL for physical interaction (grasping, assembly)?
+A: Impedance/admittance control.
+
+Q: How do robotic systems split MOTION PLANNING from CONTROL?
+A: A planner produces the reference; a tracking controller follows it.
+
+Q: Which estimators power robot LOCALIZATION and MAPPING (SLAM)?
+A: Kalman and particle filters.
+
+Q: Name MODERN extensions of classical robot control.
+A: RL for manipulation, visual servoing, humanoid walking via zero moment point control.
 
 ## 14.9 Applications: Process Control
 
-Q: How does CONTROL THEORY apply to PROCESS CONTROL (chemical/industrial)?
-A: (1) [Level, temperature, flow loops]: PI controllers with gain scheduling or MPC. (2) [Distillation columns, reactors]: MIMO MPC handling constraints. (3) [Long dead times]: Smith predictors, model predictive control. (4) [Batch processes]: iterative learning control. DCS (Distributed Control Systems) coordinate thousands of PIDs in a plant. Reliability and safety critical — conservative tuning, redundant sensors, extensive alarm systems. Field dominated by advanced MPC in recent decades.
+Q: Which controllers run the basic PROCESS loops (level, temperature, flow)?
+A: PI controllers, with gain scheduling or MPC where needed.
+
+Q: Which control method handles MIMO process units (distillation columns, reactors) with constraints?
+A: MIMO model predictive control (MPC) — the dominant advanced method in recent decades.
+
+Q: Which techniques handle LONG DEAD TIMES in process control?
+A: Smith predictors and model predictive control.
+
+Q: Which control technique suits repetitive BATCH processes?
+A: Iterative learning control.
+
+Q: How are the thousands of PID loops in a chemical plant coordinated, given reliability and safety demands?
+A: DCS (Distributed Control Systems) — with conservative tuning, redundant sensors, extensive alarm systems.
 
 ## 14.10 Applications: Power Systems
 
-Q: How is CONTROL THEORY used in POWER SYSTEMS?
-A: (1) [Voltage regulation]: automatic voltage regulators (AVR) on generators. (2) [Frequency control]: load-frequency control maintaining 50/60 Hz despite load changes — droop control + secondary PI loop. (3) [Power system stabilizers]: damp electromechanical oscillations via supplementary control signals. (4) [FACTS devices]: power-electronic control of reactive power, voltage. (5) [Microgrids and renewables]: fast power electronic controllers for inverter-based generation. Modern grid is a HUGE dynamical control system.
+Q: What regulates generator VOLTAGE in power systems?
+A: Automatic voltage regulators (AVR).
+
+Q: How is GRID FREQUENCY held at 50/60 Hz despite load changes?
+A: Load-frequency control: droop control + a secondary PI loop.
+
+Q: What do POWER SYSTEM STABILIZERS do?
+A: Damp electromechanical oscillations via supplementary control signals.
+
+Q: What do FACTS devices control in the power grid?
+A: Reactive power and voltage, via power electronics.
+
+Q: How are MICROGRIDS and renewables controlled?
+A: Fast power-electronic controllers for inverter-based generation.
 
 ## 14.11 Applications: Biomedical
 
-Q: Give BIOMEDICAL applications of control theory.
-A: (1) [Artificial pancreas]: closed-loop insulin delivery based on continuous glucose monitoring — MPC handles glucose constraints, meal disturbances. (2) [Cardiac pacemakers]: control of rate/rhythm. (3) [Drug dosing]: PK/PD models + control to optimize therapeutic levels (anesthesia, chemotherapy). (4) [Brain-machine interfaces]: decoding neural signals to control prosthetics. (5) [Ventilators]: pressure/volume control with lung dynamics. (6) [Deep brain stimulation]: closed-loop Parkinson's therapy. High-stakes applications requiring robust, safe control.
+Q: How does the ARTIFICIAL PANCREAS use control theory?
+A: Closed-loop insulin delivery driven by continuous glucose monitoring — MPC handles glucose constraints and meal disturbances.
+
+Q: How is control theory used for DRUG DOSING (anesthesia, chemotherapy)?
+A: PK/PD models + feedback control to optimize therapeutic drug levels.
+
+Q: How is control used in VENTILATORS?
+A: Pressure/volume control against lung dynamics.
+
+Q: Name BIOMEDICAL closed-loop applications in neural and cardiac devices.
+A: Cardiac pacemakers (rate/rhythm control), deep brain stimulation (closed-loop Parkinson's therapy), brain-machine interfaces (decoding neural signals to control prosthetics).
 
 ## 14.12 A Worked Digital Controller
 

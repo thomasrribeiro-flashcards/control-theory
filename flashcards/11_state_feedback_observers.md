@@ -1,6 +1,6 @@
 +++
 order = 11
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "state-feedback", "pole-placement", "observer", "luenberger", "ackermann"]
 +++
 
@@ -11,7 +11,10 @@ tags = ["math", "control-theory", "state-feedback", "pole-placement", "observer"
 C: A [state-feedback controller] is $\mathbf{u} = -K\mathbf{x} + r$, where $K$ is a constant gain matrix and $r$ is a reference input. Closed-loop: $\dot{\mathbf{x}} = (A - BK)\mathbf{x} + Br$.
 
 Q: What does STATE FEEDBACK offer over output feedback?
-A: (1) ARBITRARILY placable closed-loop poles (if controllable). (2) Handles MIMO directly. (3) Optimal control (LQR) formulated naturally. (4) Full access to internal state enables richer control laws. Downside: requires MEASURING ALL STATES — often impractical. Solution: OBSERVERS estimate states from outputs. Combined state-feedback + observer = OUTPUT FEEDBACK with state-space power.
+A: ARBITRARILY placeable closed-loop poles (if controllable), direct MIMO handling, and natural formulation of optimal control (LQR) — full access to the internal state enables richer control laws.
+
+Q: What is the main DOWNSIDE of state feedback, and its standard remedy?
+A: It requires MEASURING ALL STATES — often impractical. Remedy: OBSERVERS estimate states from outputs; combined state-feedback + observer = OUTPUT FEEDBACK with state-space power.
 
 ## 11.2 Pole Placement
 
@@ -66,7 +69,7 @@ A: Because output feedback $\mathbf{u} = -K\mathbf{y} = -KC\mathbf{x}$ constrain
 
 ## 11.11 Robustness of State Feedback
 
-Q: Is state feedback ROBUST to model uncertainty?
+Q: What ROBUSTNESS to model uncertainty does state feedback provide?
 A: LQR (chapter 12) gives GUARANTEED gain margin (infinite) and phase margin (60°) for the loop broken at the input. Pole placement alone offers no inherent robustness guarantee — aggressive placement can be fragile. RULE OF THUMB: don't place poles much faster than needed, don't cancel lightly-damped plant modes. Modern methods (LQG/LTR, H-infinity) explicitly optimize for robustness — covered in later chapters.
 
 ## 11.12 A Worked Pole Placement

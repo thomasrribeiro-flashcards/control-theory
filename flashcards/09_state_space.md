@@ -1,6 +1,6 @@
 +++
 order = 9
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "state-space", "mimo", "modern-control", "similarity-transform", "canonical-forms"]
 +++
 
@@ -8,10 +8,15 @@ tags = ["math", "control-theory", "state-space", "mimo", "modern-control", "simi
 
 ## 9.1 What State-Space Representation Is
 
-C: The [state-space model] of an LTI system is $\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$, $\mathbf{y} = C\mathbf{x} + D\mathbf{u}$, where $\mathbf{x} \in \mathbb{R}^n$ is the [state], $\mathbf{u} \in \mathbb{R}^m$ is the [input], $\mathbf{y} \in \mathbb{R}^p$ is the [output], and $A, B, C, D$ are constant matrices.
+C: The [state-space model] of an LTI system is $\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$, $\mathbf{y} = C\mathbf{x} + D\mathbf{u}$, where $A, B, C, D$ are constant matrices.
 
-Q: Why is STATE-SPACE more powerful than transfer functions?
-A: (1) [MIMO NATIVE]: handles multi-input/output directly; transfer function generalizes awkwardly to a matrix $G(s) = C(sI - A)^{-1}B + D$. (2) [INTERNAL VIEW]: tracks state variables (physical quantities — positions, velocities, currents) rather than just input-output. (3) [Modern tools]: optimal control (LQR), observers (Kalman), nonlinear extensions naturally. (4) [Numerical]: better conditioned for computation. Transfer functions are INPUT-OUTPUT; state-space is INTERNAL + input-output.
+C: In the LTI model $\dot{\mathbf{x}} = A\mathbf{x} + B\mathbf{u}$, $\mathbf{y} = C\mathbf{x} + D\mathbf{u}$, the vector $\mathbf{x} \in \mathbb{R}^n$ is the [state] and $\mathbf{y} \in \mathbb{R}^p$ is the [output] ($\mathbf{u} \in \mathbb{R}^m$ is the input).
+
+Q: What is the core CONCEPTUAL advantage of state-space models over transfer functions?
+A: Transfer functions are INPUT-OUTPUT only; state-space is INTERNAL + input-output — it tracks state variables (physical quantities: positions, velocities, currents) and handles MIMO natively, where the transfer function generalizes awkwardly to the matrix $G(s) = C(sI - A)^{-1}B + D$.
+
+Q: Which MODERN design tools does the state-space viewpoint enable?
+A: Optimal control (LQR), observers (Kalman), nonlinear extensions — plus better-conditioned numerical computation.
 
 ## 9.2 Choosing State Variables
 
@@ -43,7 +48,16 @@ A: EIGENVALUES of $A$ (→ poles of transfer function), TRANSFER FUNCTION $G(s)$
 ## 9.6 Canonical Forms
 
 Q: Name COMMON canonical state-space forms.
-A: (1) [CONTROLLABLE CANONICAL FORM]: $A$ has companion-matrix structure; $B = [0, \ldots, 0, 1]^T$. Used for state-feedback design. (2) [OBSERVABLE CANONICAL FORM]: dual; $A^T$ is companion; $C = [1, 0, \ldots, 0]$. Used for observer design. (3) [MODAL FORM] (diagonal): $A = \text{diag}(\lambda_i)$ — each state is a mode. Decouples dynamics into independent scalar equations. (4) [JORDAN FORM]: for repeated eigenvalues. Each form highlights DIFFERENT PROPERTIES.
+A: Controllable canonical, observable canonical, modal (diagonal), and Jordan form — each highlights DIFFERENT PROPERTIES.
+
+Q: Describe the CONTROLLABLE CANONICAL FORM and its use.
+A: $A$ has companion-matrix structure; $B = [0, \ldots, 0, 1]^T$. Used for state-feedback design.
+
+Q: Describe the OBSERVABLE CANONICAL FORM and its use.
+A: Dual of controllable canonical: $A^T$ is companion; $C = [1, 0, \ldots, 0]$. Used for observer design.
+
+Q: Describe the MODAL (diagonal) canonical form and its use.
+A: $A = \text{diag}(\lambda_i)$ — each state is a mode; dynamics decouple into independent scalar equations. For repeated eigenvalues, the JORDAN FORM generalizes it.
 
 ## 9.7 Solution of State-Space Equations
 

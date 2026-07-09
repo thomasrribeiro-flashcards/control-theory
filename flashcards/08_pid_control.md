@@ -1,6 +1,6 @@
 +++
 order = 8
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "pid", "tuning", "ziegler-nichols", "integral-windup", "anti-windup"]
 +++
 
@@ -42,19 +42,23 @@ A: Because pure differentiation amplifies HIGH-FREQUENCY NOISE: $\mathcal{L}\{dn
 
 ## 8.6 Ziegler-Nichols Tuning
 
-Q: Describe the ZIEGLER-NICHOLS CLOSED-LOOP TUNING method.
-A: (1) Set $K_i = K_d = 0$. Start with $K_p$ small and INCREASE slowly until the closed-loop system oscillates with constant amplitude at GAIN $K_u$ (ULTIMATE GAIN) and period $T_u$ (ultimate period). (2) Then:
-- P: $K_p = 0.5 K_u$.
-- PI: $K_p = 0.45 K_u, T_i = T_u / 1.2$.
-- PID: $K_p = 0.6 K_u, T_i = T_u / 2, T_d = T_u / 8$.
-Empirical rules from 1940s, still widely used. Give reasonable STARTING POINTS; typically require fine-tuning. Gives aggressive response — 25% overshoot by design.
+Q: Describe the ZIEGLER-NICHOLS CLOSED-LOOP TUNING procedure (finding the ultimate gain).
+A: Set $K_i = K_d = 0$. Start with $K_p$ small and INCREASE slowly until the closed-loop system oscillates with constant amplitude — record that GAIN $K_u$ (ULTIMATE GAIN) and the oscillation period $T_u$ (ultimate period). Controller settings then come from the Z-N table. Empirical rules from 1940s, still widely used; aggressive by design (~25% overshoot), so fine-tune afterwards.
 
-Q: Describe ZIEGLER-NICHOLS OPEN-LOOP (reaction curve) tuning.
-A: Apply step input to open loop. Measure reaction curve: extract DEAD TIME $L$ (delay before response starts) and TIME CONSTANT $T$ (characteristic time of response) from tangent at inflection point. Then:
-- P: $K_p = T / L$.
-- PI: $K_p = 0.9 T / L, T_i = 3.3 L$.
-- PID: $K_p = 1.2 T / L, T_i = 2 L, T_d = 0.5 L$.
-For systems where closed-loop oscillation test is unsafe. Simple, quick, but limited to approximately first-order-plus-delay plants.
+Q: Ziegler-Nichols CLOSED-LOOP table: given $K_u$ and $T_u$, what are the PID settings?
+A: $K_p = 0.6 K_u$, $T_i = T_u / 2$, $T_d = T_u / 8$.
+
+Q: Ziegler-Nichols CLOSED-LOOP table: given $K_u$ and $T_u$, what are the P-only and PI settings?
+A: P: $K_p = 0.5 K_u$. PI: $K_p = 0.45 K_u$, $T_i = T_u / 1.2$.
+
+Q: Describe the ZIEGLER-NICHOLS OPEN-LOOP (reaction curve) procedure.
+A: Apply a step input to the open loop. From the tangent at the inflection point of the reaction curve, extract DEAD TIME $L$ (delay before response starts) and TIME CONSTANT $T$ (characteristic time of response). Controller settings then come from the Z-N open-loop table. For systems where a closed-loop oscillation test is unsafe. Simple, quick, but limited to approximately first-order-plus-delay plants.
+
+Q: Ziegler-Nichols OPEN-LOOP table: given dead time $L$ and time constant $T$, what are the PID settings?
+A: $K_p = 1.2 T / L$, $T_i = 2 L$, $T_d = 0.5 L$.
+
+Q: Ziegler-Nichols OPEN-LOOP table: given dead time $L$ and time constant $T$, what are the P-only and PI settings?
+A: P: $K_p = T / L$. PI: $K_p = 0.9 T / L$, $T_i = 3.3 L$.
 
 ## 8.7 Modern Tuning Approaches
 

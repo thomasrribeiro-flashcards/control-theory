@@ -1,6 +1,6 @@
 +++
 order = 5
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "root-locus", "closed-loop-poles", "compensator-design"]
 +++
 
@@ -20,8 +20,14 @@ A: Closed-loop char. equation: $1 + K G(s) = 0 \Rightarrow G(s) = -1/K$. In pola
 
 ## 5.3 Basic Rules
 
-Q: State the FIRST FEW root locus rules.
-A: (1) Locus has $n$ BRANCHES where $n$ = number of poles of $G$. (2) Branches START at OPEN-LOOP POLES (when $K = 0$). (3) Branches END at OPEN-LOOP ZEROS or at infinity (when $K = \infty$). If $G$ has $m$ zeros, $n - m$ branches go to infinity. (4) Locus is SYMMETRIC about the real axis (complex poles come in conjugate pairs). These rules shape the skeleton of any root locus.
+Q: How many BRANCHES does a root locus have, and where does each branch START?
+A: $n$ branches, where $n$ = number of open-loop poles of $G$. Each branch STARTS at an open-loop pole (when $K = 0$).
+
+Q: Where do root locus branches END as $K \to \infty$?
+A: At OPEN-LOOP ZEROS or at infinity. If $G$ has $n$ poles and $m$ zeros, $m$ branches end at zeros and $n - m$ go to infinity.
+
+Q: Why is the root locus SYMMETRIC about the real axis?
+A: Because the characteristic polynomial has real coefficients, so complex closed-loop poles come in conjugate pairs.
 
 ## 5.4 Real Axis Segments
 
@@ -61,8 +67,11 @@ A: Add POLES and ZEROS of the compensator $C(s)$ to SHAPE the overall $L(s) = C(
 Q: You're given an open-loop $L(s)$ and asked for the root locus. What's your first move?
 A: Plot poles (×) and zeros (○) on the $s$-plane, then mark real-axis segments (odd-count rule). Asymptotes and breakaway come next.
 
-Q: OUTLINE the steps to sketch a root locus.
-A: (1) Plot open-loop poles (×) and zeros (○). (2) Identify real-axis segments (odd count rule). (3) Compute and draw asymptotes (number, angle, centroid). (4) Find breakaway/break-in points. (5) Compute angles of departure/arrival at complex poles/zeros. (6) Find imaginary-axis crossings (Routh or $s = j\omega$). (7) Sketch branches from poles to zeros, respecting rules and symmetry. Practice builds intuition rapidly.
+Q: What are the FIRST THREE steps in sketching a root locus?
+A: (1) Plot open-loop poles (×) and zeros (○). (2) Identify real-axis segments (odd count rule). (3) Compute and draw asymptotes (number, angle, centroid).
+
+Q: After drawing the asymptotes, what are the REMAINING steps in sketching a root locus?
+A: (4) Find breakaway/break-in points. (5) Compute angles of departure/arrival at complex poles/zeros. (6) Find imaginary-axis crossings (Routh or $s = j\omega$). (7) Sketch branches from poles to zeros, respecting rules and symmetry. Practice builds intuition rapidly.
 
 ## 5.11 Gain from the Locus
 

@@ -1,6 +1,6 @@
 +++
 order = 1
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "feedback", "block-diagrams", "open-loop", "closed-loop"]
 +++
 
@@ -30,8 +30,11 @@ A: Reference $r(t)$ enters a SUMMING JUNCTION where the measured output $y(t)$ i
 
 ## 1.4 Feedback's Beneficial Effects
 
-Q: State the main BENEFITS of feedback.
-A: (1) [Reduces sensitivity] to plant parameter variations. (2) [Rejects disturbances] automatically. (3) [Linearizes nonlinearities] around operating points. (4) [Modifies dynamics] — can stabilize unstable plants, speed up slow ones, add damping. (5) [Enables tracking] of reference signals. Feedback TRANSFORMS imperfect components into reliable systems — the engineering miracle that makes precision machines possible from imperfect parts.
+Q: State the main BENEFITS of feedback against UNCERTAINTY.
+A: (1) [Reduces sensitivity] to plant parameter variations. (2) [Rejects disturbances] automatically. (3) [Linearizes nonlinearities] around operating points.
+
+Q: State the main BENEFITS of feedback on DYNAMICS and TRACKING.
+A: (1) [Modifies dynamics] — can stabilize unstable plants, speed up slow ones, add damping. (2) [Enables tracking] of reference signals. Feedback TRANSFORMS imperfect components into reliable systems — the engineering miracle that makes precision machines possible from imperfect parts.
 
 Q: What is the COST or DOWNSIDE of feedback?
 A: (1) [Can INDUCE instability]: high-gain feedback can make a stable plant unstable if phase margin is inadequate. (2) [Adds complexity]: more components (sensors, controllers), more tuning. (3) [Introduces noise] from sensors into the control signal. (4) [Delay concerns]: lags in measurement/actuation can trigger oscillations. Feedback is powerful but MUST BE DESIGNED CAREFULLY. Naive high gain is rarely the answer.
@@ -53,8 +56,20 @@ A: $S(j\omega) + T(j\omega) = 1$ at every frequency. So making $T$ small (noise 
 
 ## 1.7 Performance Specifications
 
-Q: What are the STANDARD specifications for a control system's step response?
-A: (1) [Rise time $t_r$]: time to go from 10% to 90% of final value. (2) [Settling time $t_s$]: time to reach and stay within a $\pm 2\%$ (or $\pm 5\%$) band. (3) [Overshoot %]: peak vs final value excess. (4) [Steady-state error $e_\text{ss}$]: long-term tracking error. (5) [Damping ratio $\zeta$]: oscillation strength. These spec the "speed," "accuracy," and "smoothness" of response — quantified design targets.
+Q: In step-response specifications, define the RISE TIME $t_r$.
+A: Time to go from 10% to 90% of the final value.
+
+Q: In step-response specifications, define the SETTLING TIME $t_s$.
+A: Time to reach and stay within a $\pm 2\%$ (or $\pm 5\%$) band of the final value.
+
+Q: In step-response specifications, define PERCENT OVERSHOOT.
+A: The peak's excess over the final value, as a percentage.
+
+Q: In step-response specifications, define the STEADY-STATE ERROR $e_\text{ss}$.
+A: The long-term tracking error — the gap between reference and output as $t \to \infty$.
+
+Q: In step-response specifications, what does the DAMPING RATIO $\zeta$ measure?
+A: Oscillation strength — the "smoothness" of the response.
 
 ## 1.8 Disturbances and Noise
 
@@ -70,8 +85,17 @@ A: Because (1) LINEAR systems are TRACTABLE: superposition, frequency response, 
 
 ## 1.10 A Brief History of Control
 
-Q: Sketch the HISTORY of control theory.
-A: (1) [1788]: Watt's centrifugal governor — first mechanical feedback, steam engine speed regulation. (2) [1920s-30s]: Nyquist, Bode at Bell Labs — frequency-domain analysis. (3) [1950s-60s]: State-space (Kalman, Bellman), optimal control (LQR, dynamic programming). (4) [1960s-70s]: Kalman filter, space-age applications (Apollo). (5) [1980s]: Robust control (H-infinity). (6) [Modern]: Nonlinear, adaptive, learning-based control. Each era driven by application demands (aerospace, industry, robotics).
+C: Control history: in [1788], Watt's centrifugal governor provided the first mechanical feedback (steam engine speed regulation).
+
+C: Control history: in the 1920s-30s, [Nyquist and Bode] at Bell Labs developed frequency-domain analysis.
+
+C: Control history: in the 1950s-60s, Kalman and Bellman developed [state-space and optimal control] (LQR, dynamic programming).
+
+C: Control history: the 1960s-70s brought the [Kalman filter] and space-age applications (Apollo).
+
+C: Control history: the 1980s brought [robust control] (H-infinity).
+
+C: Control history: after robust control in the 1980s, the modern era turned to [nonlinear, adaptive, learning-based] control.
 
 ## 1.11 Classical vs Modern Control
 

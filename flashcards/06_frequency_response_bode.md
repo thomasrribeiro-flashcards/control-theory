@@ -1,6 +1,6 @@
 +++
 order = 6
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "frequency-response", "bode-plot", "magnitude", "phase", "decibels"]
 +++
 
@@ -19,7 +19,7 @@ A: Because (1) MEASURABLE experimentally with sine-wave generators. (2) Reveals 
 C: A [Bode plot] is a pair of LOG-LOG (or semi-log) plots: (1) magnitude in DECIBELS ($20 \log_{10} |G(j\omega)|$) vs. $\omega$ (log scale), and (2) phase (degrees) vs. $\omega$ (log scale).
 
 Q: Why use DECIBELS and LOG FREQUENCY?
-A: (1) Dec convert MULTIPLICATIVE gains to ADDITIVE: $|G_1 G_2|$ in dB = $|G_1|$ dB + $|G_2|$ dB. Series/parallel combinations become sums. (2) Log frequency spans orders of magnitude (mHz to MHz) in one plot. (3) Polynomial transfer functions produce STRAIGHT-LINE ASYMPTOTIC Bode plots — trivial to sketch by hand. (4) Matches human perception of sound/light logarithmic scales. Standard in all engineering disciplines.
+A: (1) Decibels convert MULTIPLICATIVE gains to ADDITIVE: $|G_1 G_2|$ in dB = $|G_1|$ dB + $|G_2|$ dB. Series/parallel combinations become sums. (2) Log frequency spans orders of magnitude (mHz to MHz) in one plot. (3) Polynomial transfer functions produce STRAIGHT-LINE ASYMPTOTIC Bode plots — trivial to sketch by hand. (4) Matches human perception of sound/light logarithmic scales. Standard in all engineering disciplines.
 
 ## 6.3 Bode Plot of First-Order System
 

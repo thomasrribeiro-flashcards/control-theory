@@ -1,6 +1,6 @@
 +++
 order = 4
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "stability", "routh-hurwitz", "characteristic-equation", "poles"]
 +++
 
@@ -8,7 +8,8 @@ tags = ["math", "control-theory", "stability", "routh-hurwitz", "characteristic-
 
 ## 4.1 BIBO Stability
 
-C: An LTI system is [bounded-input bounded-output (BIBO) stable] if every bounded input produces a bounded output.
+Q: Define BIBO (bounded-input bounded-output) STABILITY for an LTI system.
+A: Every bounded input produces a bounded output.
 
 Q: State the BIBO STABILITY condition for transfer functions.
 A: An LTI system with transfer function $G(s)$ is BIBO stable iff ALL POLES of $G$ have NEGATIVE REAL PART (lie in the OPEN LEFT HALF-PLANE). Equivalent forms: (1) the impulse response is absolutely integrable: $\int_0^\infty |g(t)| dt < \infty$. (2) All natural modes $e^{p_i t}$ decay to zero. A pole on the imaginary axis ($\text{Re}(p) = 0$) gives MARGINAL stability — bounded but non-decaying response (single poles) or unbounded (repeated poles).
@@ -58,8 +59,8 @@ A: Roots SYMMETRIC about the origin — typically pairs of pure imaginary roots 
 
 ## 4.8 Stability Margins via Routh
 
-Q: Can Routh-Hurwitz determine GAIN MARGIN (range of stable $K$ in $1 + KG(s) = 0$)?
-A: Yes. Write characteristic polynomial with $K$ as a parameter: $P(s, K) = 0$. Build Routh table with $K$-dependent entries. Determine range of $K$ making ALL first-column entries positive. Boundaries: $K$ values where first-column entries become zero → marginal stability (imaginary-axis poles). Gives a PRECISE stability range analytically — useful for design. Example: for which $K$ is $s^3 + 2s^2 + s + K$ stable? Routh gives $0 < K < 2$.
+Q: How does Routh-Hurwitz determine the GAIN MARGIN (range of stable $K$ in $1 + KG(s) = 0$)?
+A: Write characteristic polynomial with $K$ as a parameter: $P(s, K) = 0$. Build Routh table with $K$-dependent entries. Determine range of $K$ making ALL first-column entries positive. Boundaries: $K$ values where first-column entries become zero → marginal stability (imaginary-axis poles). Gives a PRECISE stability range analytically — useful for design. Example: for which $K$ is $s^3 + 2s^2 + s + K$ stable? Routh gives $0 < K < 2$.
 
 ## 4.9 Root Properties
 

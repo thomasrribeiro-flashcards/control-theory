@@ -1,6 +1,6 @@
 +++
 order = 7
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "nyquist", "stability", "encirclement", "phase-margin", "robustness"]
 +++
 
@@ -59,12 +59,15 @@ A: Count RHP poles $P$ of $L(s)$. For closed-loop stability: need $N = -P$ (i.e.
 ## 7.10 Circle Criterion and Absolute Stability
 
 Q: What is the [circle criterion] for nonlinear feedback systems?
-A: Generalizes Nyquist to systems with a NONLINEAR element whose characteristic lies in a SECTOR $[k_1, k_2]$ (slope bounded). System is stable if Nyquist plot of $G(j\omega)$ avoids a certain disk determined by the sector bounds. Trade more conservative sufficient condition for handling nonlinearities. Useful for: saturation nonlinearities, dead zones, hysteresis (with care), hardlocks. Complement to LYAPUNOV methods.
+A: Generalizes Nyquist to systems with a NONLINEAR element whose characteristic lies in a SECTOR $[k_1, k_2]$ (slope bounded). System is stable if Nyquist plot of $G(j\omega)$ avoids a certain disk determined by the sector bounds. Trades conservatism (it is only a sufficient condition) for the ability to handle nonlinearities. Useful for: saturation nonlinearities, dead zones, hysteresis (with care). Complement to LYAPUNOV methods.
 
 ## 7.11 Sketching Nyquist Plots
 
-Q: Outline the steps to sketch a NYQUIST PLOT.
-A: (1) Compute $L(j\omega)$ at KEY points: $\omega = 0^+$, $\omega = \infty$, phase crossover(s). (2) Plot these; connect smoothly using Bode data (monotonic magnitude). (3) Reflect to the CONJUGATE for $\omega < 0$. (4) Close with appropriate infinite arcs (for integrators, need semicircle in complex plane). (5) Count encirclements of $-1$. Sanity-check: Bode plot and Nyquist plot should agree on crossings and encirclements.
+Q: When sketching a NYQUIST PLOT, at which KEY points do you evaluate $L(j\omega)$ first, and how do you connect them?
+A: Compute $L(j\omega)$ at $\omega = 0^+$, $\omega = \infty$, and the phase crossover(s); plot these and connect smoothly using Bode data (monotonic magnitude).
+
+Q: After plotting $L(j\omega)$ for $\omega > 0$, how do you COMPLETE the Nyquist plot and read off stability?
+A: Reflect to the CONJUGATE for $\omega < 0$, close with appropriate infinite arcs (integrator poles need semicircles in the complex plane), then count encirclements of $-1$. Sanity-check: Bode plot and Nyquist plot should agree on crossings and encirclements.
 
 ## 7.12 A Worked Nyquist Example
 
@@ -84,10 +87,8 @@ Behavior:
 
 Nyquist contour: from origin along negative real side up to $\omega = 0^+$, loops around origin via the small semicircle detour (large magnitude), comes back and traces the lower half-plane. For $\omega < 0$, mirror: upper half-plane.
 
-Critical point: The curve for $\omega > 0$ approaches the vertical line $\text{Re} = -K$ (for small $\omega$). For the curve to NOT encircle $-1$: need $-K > -1$, i.e., $K < 1$? Wait — the asymptote is $\text{Re}(L) \to -K$ for small $\omega$, but the curve curls up/down by pi rotation through the integrator.
+Critical point: $\angle L(j\omega) = -90° - \arctan(\omega)$ lies strictly between $-90°$ and $-180°$ for all finite $\omega > 0$, reaching $-180°$ only as $\omega \to \infty$ where $|L| \to 0$. So the curve never touches the negative real axis at any finite distance, and the infinite closure arc from the origin detour sweeps through the RIGHT half-plane. Hence no encirclement of $-1$: $N = 0$ for EVERY $K > 0$.
 
-Actually for this system: it's well known to be STABLE for all $K > 0$ (the Nyquist curve never encircles $-1$ — it approaches the negative real axis from above and recedes without crossing).
-
-Phase margin: gain crossover where $|L(j\omega_{gc})| = 1$. Compute; yields PM that decreases as $K$ increases but never reaches zero. So STABLE for ALL $K > 0$ for this specific system.
+Phase margin: gain crossover where $|L(j\omega_{gc})| = 1$; $PM = 90° - \arctan(\omega_{gc}) > 0$ always — it shrinks as $K$ grows but never reaches zero. So STABLE for ALL $K > 0$ for this specific system.
 
 **EVALUATE**: For $L(s) = K/[s(s+1)]$: CLOSED-LOOP STABLE for all $K > 0$ — confirmed by noting the closed-loop char. poly $s^2 + s + K$ has roots with NEGATIVE REAL PART for all $K > 0$ (by Routh: all coefficients positive, 2nd-order → stable). Nyquist analysis agrees: no encirclements of $-1$ for any $K > 0$. Simple plants often stable for large parameter ranges — richer systems (like the 3rd-order example in Chapter 4) have finite stability ranges.

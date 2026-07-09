@@ -1,6 +1,6 @@
 +++
 order = 13
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "nonlinear-control", "lyapunov", "sliding-mode", "robust-control", "h-infinity", "adaptive"]
 +++
 
@@ -8,8 +8,14 @@ tags = ["math", "control-theory", "nonlinear-control", "lyapunov", "sliding-mode
 
 ## 13.1 Beyond Linear
 
-Q: Why do we need NONLINEAR CONTROL methods?
-A: Because most real systems are nonlinear, and linearization fails when: (1) LARGE operating ranges are required (not just near equilibrium). (2) Fundamentally nonlinear phenomena (hysteresis, saturation, deadzone) dominate. (3) Specific nonlinear dynamics exploit (robotics with Coriolis, spacecraft with attitude constraints). Nonlinear control is richer but HARDER: no universal frequency-domain tools, case-by-case analysis. Key methods: Lyapunov, feedback linearization, sliding mode, backstepping.
+Q: When does LINEARIZATION fail, requiring NONLINEAR CONTROL methods?
+A: (1) LARGE operating ranges are required (not just near equilibrium). (2) Fundamentally nonlinear phenomena (hysteresis, saturation, deadzone) dominate. (3) The design exploits specific nonlinear dynamics (robotics with Coriolis, spacecraft with attitude constraints).
+
+Q: Why is NONLINEAR CONTROL harder than linear control?
+A: No universal frequency-domain tools — analysis and design are case-by-case.
+
+Q: Name the KEY METHODS of nonlinear control.
+A: Lyapunov analysis, feedback linearization, sliding mode, backstepping.
 
 ## 13.2 Lyapunov's Direct Method
 
@@ -56,7 +62,7 @@ A: Control design ensuring specific properties (stability, performance) for ALL 
 ## 13.8 H-infinity Control
 
 Q: What does $H_\infty$ CONTROL optimize?
-A: Minimizes the $H_\infty$ norm (peak gain over frequency) of a closed-loop transfer function from disturbances/noise to errors/outputs. $||T||_\infty = \sup_\omega \bar{\sigma}(T(j\omega))$ where $\bar{\sigma}$ = largest singular value. SMALL $||T||_\infty$ → disturbances and uncertainties have BOUNDED effect for all frequencies. Solution: Riccati equations similar to LQR but with "DGKF" (Doyle-Glover-Khargonekar-Francis) equations. Hotter design method; worst-case optimization rather than average.
+A: Minimizes the $H_\infty$ norm (peak gain over frequency) of a closed-loop transfer function from disturbances/noise to errors/outputs. $||T||_\infty = \sup_\omega \bar{\sigma}(T(j\omega))$ where $\bar{\sigma}$ = largest singular value. SMALL $||T||_\infty$ → disturbances and uncertainties have BOUNDED effect for all frequencies. Solution: Riccati equations similar to LQR but with "DGKF" (Doyle-Glover-Khargonekar-Francis) equations. A worst-case design method: optimizes the worst case rather than the average.
 
 ## 13.9 Gain Scheduling
 
@@ -70,8 +76,11 @@ A: A system is passive if $\int_0^t u^T y \, d\tau \geq 0$ (energy "in" exceeds 
 
 ## 13.11 Neural Network and Learning-Based Control
 
-Q: How are NEURAL NETWORKS used in control?
-A: (1) As NONLINEAR FUNCTION APPROXIMATORS in adaptive control — represent unknown dynamics or controllers. (2) REINFORCEMENT LEARNING: learn policies by trial and error (deep RL for robotics, games). (3) Imitation learning from expert demonstrations. (4) Model-based learning: identify dynamics, then plan. Blends with classical control: robust training, stability guarantees, safe RL. Active intersection of ML and control.
+Q: What role do NEURAL NETWORKS play in ADAPTIVE control?
+A: NONLINEAR FUNCTION APPROXIMATORS — representing unknown dynamics or controllers.
+
+Q: Besides function approximation in adaptive control, how is MACHINE LEARNING used for control?
+A: (1) REINFORCEMENT LEARNING: learn policies by trial and error (deep RL for robotics, games). (2) Imitation learning from expert demonstrations. (3) Model-based learning: identify dynamics, then plan. Blends with classical control: robust training, stability guarantees, safe RL.
 
 ## 13.12 A Worked Lyapunov Analysis
 
