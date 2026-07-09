@@ -1,6 +1,6 @@
 +++
 order = 12
-subject = "Math"
+subject = "Mathematics"
 tags = ["math", "control-theory", "optimal-control", "lqr", "riccati", "kalman-filter", "lqg", "mpc"]
 +++
 
