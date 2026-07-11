@@ -1,6 +1,6 @@
 +++
 order = 4
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "stability", "routh-hurwitz", "characteristic-equation", "poles"]
 +++
 

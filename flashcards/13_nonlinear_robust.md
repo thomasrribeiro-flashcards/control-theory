@@ -1,6 +1,6 @@
 +++
 order = 13
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "nonlinear-control", "lyapunov", "sliding-mode", "robust-control", "h-infinity", "adaptive"]
 +++
 

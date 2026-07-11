@@ -1,6 +1,6 @@
 +++
 order = 3
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "time-response", "transient", "steady-state", "damping", "specifications"]
 +++
 

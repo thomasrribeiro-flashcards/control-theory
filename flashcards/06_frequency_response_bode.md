@@ -1,6 +1,6 @@
 +++
 order = 6
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "frequency-response", "bode-plot", "magnitude", "phase", "decibels"]
 +++
 

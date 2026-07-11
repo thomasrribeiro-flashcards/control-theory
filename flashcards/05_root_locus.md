@@ -1,6 +1,6 @@
 +++
 order = 5
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "root-locus", "closed-loop-poles", "compensator-design"]
 +++
 

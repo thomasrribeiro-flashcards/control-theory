@@ -1,6 +1,6 @@
 +++
 order = 8
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "pid", "tuning", "ziegler-nichols", "integral-windup", "anti-windup"]
 +++
 

@@ -1,6 +1,6 @@
 +++
 order = 9
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "state-space", "mimo", "modern-control", "similarity-transform", "canonical-forms"]
 +++
 

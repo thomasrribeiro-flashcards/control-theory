@@ -1,6 +1,6 @@
 +++
 order = 10
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "controllability", "observability", "duality", "kalman-decomposition", "minimal-realization"]
 +++
 

@@ -1,6 +1,6 @@
 +++
 order = 14
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "digital-control", "z-transform", "sampling", "robotics", "aerospace", "applications"]
 +++
 

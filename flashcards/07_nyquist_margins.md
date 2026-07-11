@@ -1,6 +1,6 @@
 +++
 order = 7
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "nyquist", "stability", "encirclement", "phase-margin", "robustness"]
 +++
 

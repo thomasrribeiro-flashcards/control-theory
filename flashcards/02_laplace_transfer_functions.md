@@ -1,6 +1,6 @@
 +++
 order = 2
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "laplace-transform", "transfer-function", "poles", "zeros", "impulse-response"]
 +++
 

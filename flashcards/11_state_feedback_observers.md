@@ -1,6 +1,6 @@
 +++
 order = 11
-subject = "Mathematics"
+subject = "mathematics"
 tags = ["math", "control-theory", "state-feedback", "pole-placement", "observer", "luenberger", "ackermann"]
 +++
 
